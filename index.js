@@ -159,8 +159,16 @@ async function logErrorToSheet(auth, errorMessage) {
 
 (async () => {
   try {
+    let credentials;
+    if (process.env.GOOGLE_SERVICE_KEY) {
+      credentials = JSON.parse(process.env.GOOGLE_SERVICE_KEY);
+    } else {
+      // 로컬 환경에서는 'credentials.json' 파일에서 읽기
+      credentials = CREDENTIALS_PATH;
+    }
+
     const auth = new google.auth.GoogleAuth({
-      keyFile: CREDENTIALS_PATH,
+      keyFile: credentials,
       scopes: ['https://www.googleapis.com/auth/spreadsheets'],
     });
 
