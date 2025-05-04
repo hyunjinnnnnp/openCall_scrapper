@@ -2,7 +2,7 @@ name: Run scraper daily
 
 on:
   schedule:
-    - cron: '0 2 * * *'  # 한국 시간 오전 11시 (UTC+9)
+    - cron: '0 2 * * 1-5'  # 한국 시간 오전 11시 (UTC+9) 월-금
   workflow_dispatch: # 수동 실행도 가능
 
 jobs:
